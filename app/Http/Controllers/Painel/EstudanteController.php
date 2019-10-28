@@ -30,13 +30,7 @@ class EstudanteController extends Controller
      */
     public function store(Request $request)
     {
-        try {
-            return Estudante::create($request->all());
-        } catch (\Throwable $e) {
-           return response()->json([
-               'message' => $e->getMessage()
-           ], Response::HTTP_INTERNAL_SERVER_ERROR);
-        }
+        return Estudante::create($request->all());
     }
 
     /**
@@ -45,16 +39,9 @@ class EstudanteController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Estudante $estudante)
     {
-        $estudante = Estudante::find($id);
-
-        if($estudante)
-        {
-            return response()->json($estudante, Response::HTTP_FOUND);
-        }
-        
-        return response()->json(['message' => 'Não encontrado'], Response::HTTP_NOT_FOUND);
+        return $estudante;
     }
 
     /**
@@ -64,23 +51,10 @@ class EstudanteController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Estudante $estudante)
     {
-        $estudante = Estudante::find($id);
-
-        if(!$estudante){
-            return response()->json(['message' => 'Não encontrado'], Response::HTTP_NOT_FOUND); 
-        }
-
-        try {
-            $estudante->update($request->all());
-
-            return [];
-        } catch (\Throwable $e) {
-            return response()->json([
-                'message' => $e->getMessage()
-            ], Response::HTTP_INTERNAL_SERVER_ERROR);
-        }
+        $estudante->update($request->all());
+        return [];
     }
 
     /**
@@ -89,22 +63,9 @@ class EstudanteController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Estudante $estudante)
     {
-        $estudante = Estudante::find($id);
-
-        if(!$estudante){
-            return response()->json(['message' => 'Não encontrado'], Response::HTTP_NOT_FOUND); 
-        }
-
-        try {
-            $estudante->delete();
-
-            return [];
-        } catch (\Throwable $e) {
-            return response()->json([
-                'message' => $e->getMessage()
-            ], Response::HTTP_INTERNAL_SERVER_ERROR);
-        }
+        $estudante->delete();
+        return [];
     }
 }
