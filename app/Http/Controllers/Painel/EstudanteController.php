@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Painel;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\EstudanteRequest;
 
 use App\Estudante;
 
@@ -28,7 +29,7 @@ class EstudanteController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(EstudanteRequest $request)
     {
         return Estudante::create($request->all());
     }
@@ -51,7 +52,7 @@ class EstudanteController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Estudante $estudante)
+    public function update(EstudanteRequest $request, Estudante $estudante)
     {
         $estudante->update($request->all());
         return [];
