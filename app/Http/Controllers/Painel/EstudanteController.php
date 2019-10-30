@@ -20,10 +20,9 @@ class EstudanteController extends Controller
      */
     public function index(Response $response)
     {
-        return $response->json(
-            new EstudanteCollection(Estudante::get()),
-            Response::HTTP_OK
-        );
+        return  (new EstudanteCollection(Estudante::paginate(20)))
+                    ->response()
+                    ->setStatusCode(Response::HTTP_OK);
     }
 
     /**
