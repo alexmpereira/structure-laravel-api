@@ -11,3 +11,5 @@ Esqueleto com uma estrutura pronta para desenvolver API´s com Laravel
 - Criar um model e uma migration: **php artisan make:model Estudante -m**
 - Criar um Controller: **php artisan make:controller EstudanteController --api**
 - Comando para criar as validações de requests: **php artisan make:request EstudanteRequest**
+- Comando para criar resources (camada de transformação): **php artisan make:resource Estudante**
+- Comando para criar coleções de resources: **php artisan make:resource Estudantes --collection**

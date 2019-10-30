@@ -5,9 +5,11 @@ namespace App\Http\Controllers\Painel;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\EstudanteRequest;
-
 use App\Estudante;
+use App\Http\Requests\EstudanteRequest;
+use App\Http\Resources\Estudante as EstudanteResource;
+use App\Http\Resources\Estudantes as EstudanteCollection;
+
 
 class EstudanteController extends Controller
 {
@@ -18,9 +20,10 @@ class EstudanteController extends Controller
      */
     public function index(Response $response)
     {
-        return $response->setContent(Estudante::get()->toJson())
-                ->setStatusCode(Response::HTTP_OK)
-                ->header('Content-Type', 'application/json');
+        return $response->json(
+            new EstudanteCollection(Estudante::get()),
+            Response::HTTP_OK
+        );
     }
 
     /**
@@ -42,7 +45,7 @@ class EstudanteController extends Controller
      */
     public function show(Estudante $estudante)
     {
-        return $estudante;
+        return new EstudanteResource($estudante);
     }
 
     /**
