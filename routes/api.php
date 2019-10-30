@@ -7,7 +7,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 Route::get('/estudantes', 'Painel\EstudanteController@index');
-Route::get('/estudantes/{estudante}', 'Painel\EstudanteController@show');
-Route::post('/estudantes', 'Painel\EstudanteController@store');
-Route::put('/estudantes/{estudante}', 'Painel\EstudanteController@update');
-Route::delete('/estudantes/{estudante}', 'Painel\EstudanteController@destroy');
+Route::get('/estudantes/{estudante}', 'Painel\EstudanteController@show')->name('estudantes.show');
+Route::post('/estudantes', 'Painel\EstudanteController@store')->name('estudantes.store');
+Route::put('/estudantes/{estudante}', 'Painel\EstudanteController@update')->name('estudantes.update');
+Route::delete('/estudantes/{estudante}', 'Painel\EstudanteController@destroy')->name('estudantes.destroy');

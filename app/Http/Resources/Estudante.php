@@ -3,6 +3,7 @@
 namespace App\Http\Resources;
 
 use Illuminate\Http\Resources\Json\JsonResource;
+use App\Services\LinksGenerator;
 
 class Estudante extends JsonResource
 {
@@ -14,10 +15,16 @@ class Estudante extends JsonResource
      */
     public function toArray($request)
     {
+        $links = new LinksGenerator;
+        $links->addGet('self', route('estudantes.show', $this->id));
+        $links->addPut('update', route('estudantes.update', $this->id));
+        $links->addDelete('delete', route('estudantes.destroy', $this->id));
+
         return [
             'id' => ( int ) $this->id,
             'nascimento' => $this->nascimento,
-            'sala' => new Sala($this->sala)
+            'sala' => new Sala($this->sala),
+            'links' => $links->toArray()
         ];
     }
 }
