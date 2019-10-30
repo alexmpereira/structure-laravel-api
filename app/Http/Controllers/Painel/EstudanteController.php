@@ -44,7 +44,15 @@ class EstudanteController extends Controller
      */
     public function show(Estudante $estudante)
     {
-        return new EstudanteResource($estudante);
+        if (request()->header("Accept") === "application/xml") {
+            return $this->getStudentXmlResponse($student);
+        }
+
+        if (request()->wantsJson()) {
+            return new EstudanteResource($estudante);
+        }
+
+        return response(['message'=>'Não conheço esse formato']);
     }
 
     /**
@@ -70,5 +78,16 @@ class EstudanteController extends Controller
     {
         $estudante->delete();
         return [];
+    }
+
+    public function getStudentXmlResponse($estudante)
+    {
+       $estudante = $estudante->toArray();
+       $xml = new \SimpleXMLElement('<estudante/>');
+       array_walk_recursive($estudante, function($value, $key) use ($xml) {
+            $xml->addChild($key, $value);
+       });
+       return response($xml->asXML(), 200)
+                    ->header('Content-Type', 'application/xml');
     }
 }
