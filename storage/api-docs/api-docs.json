@@ -1,0 +1,71 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "title": "API Estudantes",
+        "description": "API de Estudantes",
+        "contact": {
+            "email": "alexmpprog@gmail.com"
+        },
+        "version": "1.0.0"
+    },
+    "host": "http://localhost:8000",
+    "basePath": "/api",
+    "schemes": [
+        "http"
+    ],
+    "paths": {
+        "/estudantes": {
+            "get": {
+                "tags": [
+                    "estudantes"
+                ],
+                "summary": "Get list of estudantes",
+                "description": "Returns list of estudantes",
+                "operationId": "getestudantesList",
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    }
+                },
+                "security": [
+                    {
+                        "api_key_security_example": []
+                    }
+                ]
+            }
+        },
+        "/estudantes/{id}": {
+            "get": {
+                "tags": [
+                    "estudantes"
+                ],
+                "summary": "Informa\u00e7\u00e3o de um estudante",
+                "description": "Retorna um \u00fanico estudante",
+                "operationId": "getEstudanteById",
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    },
+                    "404": {
+                        "description": "Resource Not Found"
+                    }
+                },
+                "security": [
+                    {
+                        "oauth2_security_example": [
+                            "write:estudantes",
+                            "read:estudantes"
+                        ]
+                    }
+                ]
+            }
+        }
+    },
+    "definitions": {}
+}

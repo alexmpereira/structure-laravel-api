@@ -18,7 +18,6 @@
 
 namespace App\Http\Controllers\Painel;
 
-use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use App\Http\Controllers\Controller;
 use App\Estudante;
@@ -54,11 +53,13 @@ class EstudanteController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Response $response)
+    public function index()
     {
-        return  (new EstudanteCollection(Estudante::paginate(20)))
-                    ->response()
-                    ->setStatusCode(Response::HTTP_OK);
+        $estudantes = Estudante::paginate(20);
+
+        return  (new EstudanteCollection($estudantes))
+                ->response()
+                ->setStatusCode(Response::HTTP_OK);
     }
 
     /**
@@ -103,7 +104,7 @@ class EstudanteController extends Controller
     public function show(Estudante $estudante)
     {
         if (request()->header("Accept") === "application/xml") {
-            return $this->getStudentXmlResponse($student);
+            return $this->getStudentXmlResponse($estudante);
         }
 
         if (request()->wantsJson()) {

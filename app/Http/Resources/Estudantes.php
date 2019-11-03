@@ -18,9 +18,9 @@ class Estudantes extends ResourceCollection
     public function toArray($request)
     {
         return [
-            'dados' => $this->collection,
+            'data' => $this->collection,
             'links' => [
-                'self' => 'teste'
+                'create' => route('estudantes.store')
             ]
         ];
     }

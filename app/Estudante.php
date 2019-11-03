@@ -41,6 +41,6 @@ class Estudante extends Model
      */
     public function sala()
     {
-        return $this->belongsTo('App\Models\Sala');
+        return $this->belongsTo('App\Sala');
     }
 }

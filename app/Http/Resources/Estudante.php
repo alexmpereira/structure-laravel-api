@@ -22,6 +22,7 @@ class Estudante extends JsonResource
 
         return [
             'id' => ( int ) $this->id,
+            'nome' => $this->nome,
             'nascimento' => $this->nascimento,
             'sala' => new Sala($this->sala),
             'links' => $links->toArray()
