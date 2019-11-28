@@ -1,11 +1,36 @@
 # skeleton-laravel-api
 Esqueleto com uma estrutura pronta para desenvolver API´s com Laravel
 
+## Configuração para rodar o docker
+- No diretório **/docker**, abra o arquivo **ENV** e altere o parametro **PROJECT_PATH** para o caminho do seu projeto
+- Mais informações leia no README que tá dentro da pasta docker.
+
 ## Inicialização do projeto
 - composer install
-- Configure a conexão do banco no **.env**
+- Configure a conexão do banco no **.env** (Exemplo abaixo):
+```PHP
+  DB_CONNECTION=mysql
+  DB_HOST=mysql
+  DB_PORT=3306
+  DB_DATABASE=laradock
+  DB_USERNAME=root
+  DB_PASSWORD=secret
+```
 - php artisan migrate
 - php artisan serve
+
+## Gravando dados com a API
+
+- Para gravar estudantes é necessário ter pelo menos uma sala, pode adicionar direto na tabela para testes.
+- Corpo para gravar um estudante:
+
+```JSON
+  {
+    "nome": "Alex",
+    "nascimento": "1993-03-29",
+    "sala_id": 1
+  }
+```
 
 ## Comandos básicos do dia a dia
 - Criar um model e uma migration: **php artisan make:model Estudante -m**
@@ -25,3 +50,14 @@ Esqueleto com uma estrutura pronta para desenvolver API´s com Laravel
 ## Documentos
 
 - Uso e instalação do CORS: https://github.com/barryvdh/laravel-cors
+
+## Algumas possíveis ações
+
+- Gerar o key application: **php artisan key:generate**
+- Para verificar Erros do Laravel é necessário comentar na classe Handle o seguinte trecho:
+    ```PHP
+    if( $request->is('api/*') )
+    {
+        return $this->getJsonException( $request, $exception );
+    }
+    ```
