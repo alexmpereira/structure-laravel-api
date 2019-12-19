@@ -24,10 +24,18 @@ use App\Estudante;
 use App\Http\Requests\EstudanteRequest;
 use App\Http\Resources\Estudante as EstudanteResource;
 use App\Http\Resources\Estudantes as EstudanteCollection;
+use JWTAuth;
 
 
 class EstudanteController extends Controller
 {
+    protected $user;
+ 
+    public function __construct()
+    {
+        $this->user = JWTAuth::parseToken()->authenticate();
+    }
+
     /**
      * @SWG\Get(
      *      path="/estudantes",
