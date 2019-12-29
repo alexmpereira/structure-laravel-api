@@ -13,7 +13,8 @@ Esqueleto com uma estrutura pronta para desenvolver API´s com Laravel
     DB_PASSWORD=
   ```
 - Criar o Schema no **SGBD** com o mesmo nome do **DB_DATABASE** configurado no **.env**
-- Subir as migrations pela primeira vez é necessário passar o parametro seed: **php artisan migrate:refresh --seed**
+- Gerar JWT KEY: **php artisan jwt:secret**
+- Subir as migrations pela primeira vez é necessário passar o parametro seed: **php artisan migrate --seed**
 - Subir as atualizações das migrations normalmente: **php artisan migrate**
 - Rodar o projeto: **php artisan serve**
 
@@ -37,7 +38,6 @@ Esqueleto com uma estrutura pronta para desenvolver API´s com Laravel
 
 ## Gravando dados com a API
 
-- Para gravar estudantes é necessário ter pelo menos uma sala, **pode adicionar direto na tabela para testes**.
 - Corpo para gravar um estudante:
 
     ```JSON
@@ -76,6 +76,7 @@ Esqueleto com uma estrutura pronta para desenvolver API´s com Laravel
 ## Algumas possíveis ações
 
 - Gerar o key application: **php artisan key:generate**
+- Atualizar autoload (geralmente quando cria novas classes): **composer dump-autoload**
 - Para verificar Erros do Laravel é necessário comentar na classe Handle o seguinte trecho:
     ```PHP
     if( $request->is('api/*') )
