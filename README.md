@@ -1,9 +1,9 @@
-# skeleton-laravel-api
-Esqueleto com uma estrutura pronta para desenvolver API´s com Laravel
+# structure-laravel-api
+Structure ready to develop APIs with Laravel
 
-## Inicialização do projeto
+## Project initialization
 - composer install
-- Configure a conexão do banco no **.env** (Exemplo abaixo):
+- Database configuration **.env**:
   ```PHP
     DB_CONNECTION=mysql
     DB_HOST=mysql
@@ -12,33 +12,33 @@ Esqueleto com uma estrutura pronta para desenvolver API´s com Laravel
     DB_USERNAME=root
     DB_PASSWORD=
   ```
-- Criar o Schema no **SGBD** com o mesmo nome do **DB_DATABASE** configurado no **.env**
-- Gerar JWT KEY: **php artisan jwt:secret**
-- Subir as migrations pela primeira vez é necessário passar o parametro seed: **php artisan migrate --seed**
-- Subir as atualizações das migrations normalmente: **php artisan migrate**
-- Rodar o projeto: **php artisan serve**
+- Create a schema in the **SGBD**, with the same name configured in **DB_DATABASE**;
+- Generate JWT KEY: **php artisan jwt:secret**
+- Upload the database for the first time: **php artisan migrate --seed**
+- The next times you need to upload the database: **php artisan migrate**
+- Run the project: **php artisan serve**
 
-## Gerando tokens para autenticação nas API's
+## Generating authentication for apis
 
-- Acesse a url: **http://127.0.0.1:8000/api/register**
-    - O verbo HTTP no postman deve ser do tipo **POST**
-    - Em form-data adicione os seguintes campos:
-        - name (coloque o nome de usuário que tá no seed)
-        - email (coloque o email que tá no seed)
-        - password (coloque o password que tá no seed)
-    - Clique em enviar (deve retornar 200 o status)
-- Em seguida acesse a url: **http://127.0.0.1:8000/api/login**
-    - O verbo HTTP no postman deve ser do tipo **POST**
-    - Em form-data adicione os seguintes campos:
-        - name (coloque o nome de usuário que tá no seed)
-        - email (coloque o email que tá no seed)
-        - password (coloque o password que tá no seed)
-    - Clique em enviar
-    - Copie o token que é gerado e use nas apis que estiverem com autenticação
+- Access the url: **http://127.0.0.1:8000/api/register**
+    - The HTTP verb in the __postman__ must be of the type **POST**
+    - In form-data add the following fields:
+        - name (put the username that is in the seed)
+        - email (put the email that is in the seed)
+        - password (put the password that is in the seed)
+    - Click send (must return 200 the status)
+- Then go to a URL: **http://127.0.0.1:8000/api/login**
+    - The HTTP verb in the __postman__ must be of the type **POST**
+    - In form-data add the following fields:
+      - name (put the username that is in the seed)
+      - email (put the email that is in the seed)
+      - password (put the password that is in the seed)
+    - Click send (must return 200 the status)
+    - Copy the token that is generated and use it in apis that have authentication
 
-## Gravando dados com a API
+## Writing data with the API
 
-- Corpo para gravar um estudante:
+- Body to record a student:
 
     ```JSON
       {
@@ -49,35 +49,36 @@ Esqueleto com uma estrutura pronta para desenvolver API´s com Laravel
       }
     ```
 
-- Verbo HTTP GET para retornar todos os estudantes:
+- HTTP GET verb to return all students:
 
   > http://127.0.0.1:8000/api/estudantes?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC8xMjcuMC4wLjE6ODAwMFwvYXBpXC9sb2dpbiIsImlhdCI6MTU3Njc2OTg5NiwiZXhwIjoxNTc2NzczNDk2LCJuYmYiOjE1NzY3Njk4OTYsImp0aSI6Ikg2T3RPTTZMZ0tmeDBtb1kiLCJzdWIiOjEsInBydiI6Ijg3ZTBhZjFlZjlmZDE1ODEyZmRlYzk3MTUzYTE0ZTBiMDQ3NTQ2YWEifQ.70nU6mMSCTnbSyvv18pnhObd3VzJNPuo-FsqfvK1XQ4
 
-## Comandos básicos do dia a dia
-- Criar um model e uma migration: **php artisan make:model Estudante -m**
-- Criar um Controller: **php artisan make:controller EstudanteController --api**
-- Comando para criar as validações de requests: **php artisan make:request EstudanteRequest**
-- Comando para criar resources (camada de transformação): **php artisan make:resource Estudante**
-- Comando para criar coleções de resources: **php artisan make:resource Estudantes --collection**
+## Basic day-to-day commands
+
+- Create a model and a migration: **php artisan make:model Estudante -m**
+- Create a Controller: **php artisan make:controller EstudanteController --api**
+- Command to create request validations: **php artisan make:request EstudanteRequest**
+- Command to create resources __(transformation layer)__: **php artisan make:resource Estudante**
+- Command to create resource collections: **php artisan make:resource Estudantes --collection**
 
 ## Swagger
 
-- Documentação: https://swagger.io/
-- Package usado no projeto: https://github.com/DarkaOnLine/L5-Swagger
-- No arquivo **.env** adicionar em algum lugar o parametro: **SWAGGER_VERSION=2.0**
-- Para gerar a documentação, digite o comando: **php artisan l5-swagger:generate**
-- Para acessar a documentação da API de estudante como teste: **localhost:8000/api/documentation
+- Documentation: https://swagger.io/
+- Package used in the project: https://github.com/DarkaOnLine/L5-Swagger
+- In the **.Env** file, add the parameter somewhere: **SWAGGER_VERSION=2.0**
+- To generate the documentation, enter the command: **php artisan l5-swagger:generate**
+- To access Student API documentation as a test: **localhost:8000/api/documentation
 
-## Documentos
+## Documents
 
-- Uso e instalação do CORS: https://github.com/barryvdh/laravel-cors
-- Tutorial de referência da configuração de autenticação para as apis: https://tutsforweb.com/restful-api-in-laravel-56-using-jwt-authentication/
+- CORS use and installation: https://github.com/barryvdh/laravel-cors
+- Reference tutorial on authentication configuration for apis: https://tutsforweb.com/restful-api-in-laravel-56-using-jwt-authentication/
 
-## Algumas possíveis ações
+## Some possible actions
 
-- Gerar o key application: **php artisan key:generate**
-- Atualizar autoload (geralmente quando cria novas classes): **composer dump-autoload**
-- Para verificar Erros do Laravel é necessário comentar na classe Handle o seguinte trecho:
+- Generate the key application: **php artisan key:generate**
+- Update autoload (usually when creating new classes): **composer dump-autoload**
+- To check Laravel Errors it is necessary to comment on the Handle class the following excerpt:
     ```PHP
     if( $request->is('api/*') )
     {
@@ -85,7 +86,8 @@ Esqueleto com uma estrutura pronta para desenvolver API´s com Laravel
     }
     ```
 
-## Configuração para rodar o docker
-- No diretório **/docker**, abra o arquivo **ENV** e altere o parametro **PROJECT_PATH** para o caminho do seu projeto
-- Mais informações leia no README que tá dentro da pasta docker.
-- Em configuração ainda...
+## Configuration to run the docker
+
+- In the **/docker** directory, open the **ENV** file and change the **PROJECT_PATH** parameter to your project path
+- Read more README inside the docker folder
+- In configuration yet...

@@ -1,18 +1,18 @@
-#### Arquivo env
+#### Env file
 
-- Criar um arquivo env e adicionar os seguintes parametros:
+- Create an env file and add the following parameters:
 ```PHP
-PROJECT_PATH=/d/Users/projetos/skeleton-laravel-api
+PROJECT_PATH=/d/Users/projetos/structure-laravel-api
 MYSQL_ROOT_PASSWORD=secret
 MYSQL_PASSWORD=secret
 MYSQL_DATABASE=laradock
 MYSQL_USER=root
 ```
 
-- Com base nos parametros acima deve configurar o caminho para o projeto e a conexão do banco
+> Based on the above parameters you must configure the path for the project and the bank connection
 
-#### Iniciar container
-- Digite: **docker-compose up -d**
+#### start container
+- type it: **docker-compose up -d**
 
-#### Desligar container
-- Digite: **docker-compose down**
+#### Stop container
+- type it: **docker-compose down**
